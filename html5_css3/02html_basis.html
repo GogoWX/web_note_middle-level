@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML_basis</title>
     <!-- base标签是设置网页中的超链接的统一基本设置 -->
-    <base target="_blank">
+    <!-- <base target="_blank"> -->
 </head>
 
 <body>
     <div>
-        <h1>html简介</h1>
+        <h1>html基础</h1>
         <p>html 即HyperText Markup Language：超文本标记语言，为文本添加语义，并且在浏览器中不会被显示（超文本/标签）；</p>
         <p>html2 1995年W3C版本才有标准；2008年浏览器厂家连合W3C制定html5；</p>
     </div>
@@ -24,13 +24,170 @@
         <p>外挂一些外部的css/js文件</p>
         <p>添加一些浏览器适配相关内容</p>
     </div>
+    <hr />
     <div>
         <h2>a标签</h2>
         <a href="https://github.com/GogoWX" title="GogoWX" target="_blank">github</a>
         <p>假链接：href中写 # 或者 javascript: 区别为，#会返回到页面顶部</p>
         <p>锚点：href中填写#+id，跳转其他页面的指定id元素，只需填写链接+id：'xxx.html#id'</p>
     </div>
-    
+    <hr />
+    <div>
+        <h2>有序列表、无序列表、定义列表</h2>
+        <dl>
+            <dt>定义列表</dt>
+            <dd>
+                <ul>
+                    <li>dt和dd里可以添加任意标签</li>
+                    <li>网站尾部信息</li>
+                    <li>图文混排</li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <hr />
+    <div>
+        <h2>表格标签</h2>
+        <table class="bd-f4" border="1px" cellspacing='0' cellpadding='10' align='center'>
+            <caption>受理员业务统计表</caption>
+            <thead>
+                <tr>
+                    <th colspan="2" rowspan="2">受理员</th>
+                    <th rowspan="2">受理数</th>
+                    <th rowspan="2">自办数</th>
+                    <th rowspan="2">直接解答</th>
+                    <th colspan="2">拟办意见</th>
+                    <th colspan="2">返回修改</th>
+                    <th colspan="3">工单类型</th>
+                </tr>
+                <tr>
+                    <td>同意</td>
+                    <td>比例</td>
+                    <td>数量</td>
+                    <td>比例</td>
+                    <td>建议件</td>
+                    <td>诉求件</td>
+                    <td>咨询件</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="5">受处理</td>
+                    <td>王</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>王</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>王</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>王</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>总计</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>总计</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <hr />
+    <div>
+        <h2>表单</h2>
+        <form action="javascript:">
+            <label for="account">账号：<input type="text" value="wx" name="account" id="account"></label>
+            <label for="password">密码：<input type="password" value="" name="password" id="password"></label>
+            <p>性别：
+                <label for="man"><input type="radio" name="gender" id="man">男</label>
+                <label for="woman"><input type="radio" name="gender" id="woman">女</label>
+                <label for="none"><input type="radio" name="gender" id="none" checked="checked">保密</label>
+            </p>
+            <p>爱好：
+                <label for="b"><input type="checkbox" name="interest" id="b">篮球</label>
+                <label for="f"><input type="checkbox" name="interest" id="f">足球</label>
+                <label for="m"><input type="checkbox" name="interest" id="m" checked="checked">音乐</label>
+            </p>
+            <input type="reset" value="清空">
+            <input type="submit">
+        </form>
+    </div>
+    <div>
+        <!-- 支持性差 -->
+        <h2>下拉菜单</h2>
+        <label>请你输入你的车型：<input type="text" list="cars"></label>
+        <datalist id="cars">
+            <option value="奔驰"></option>
+            <option value="宝马"></option>
+            <option value="奥迪"></option>
+            <option value="保时捷"></option>
+            <option value="法拉利"></option>
+            <option value="林肯"></option>
+        </datalist>
+    </div>
 </body>
 
 </html>
