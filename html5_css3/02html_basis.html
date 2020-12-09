@@ -174,13 +174,28 @@
             <input type="email" name="email">
             <input type="url" name="url">
             <input type="date" name="date">
+            <textarea name="textarea" cols="5" rows="3"></textarea>
+            <h2>下拉选择器</h2>
+            <select name="city">
+                <optgroup label="北京">
+                    <option value="朝阳区">朝阳区</option>
+                    <option value="西城区">西城区</option>
+                    <option value="东城区">东城区</option>
+                </optgroup>
+                <optgroup label="上海">
+                    <option value="朝阳区">朝阳区</option>
+                    <option value="西城区">西城区</option>
+                    <option value="东城区">东城区</option>
+                </optgroup>
+            </select>
             <input type="reset" value="清空">
             <input type="submit">
         </form>
     </div>
+    <hr />
     <div>
         <!-- 支持性差 -->
-        <h2>下拉菜单</h2>
+        <h2>输入提示菜单</h2>
         <label>请你输入你的车型：<input type="text" list="cars"></label>
         <datalist id="cars">
             <option value="奔驰"></option>
@@ -191,6 +206,20 @@
             <option value="林肯"></option>
         </datalist>
     </div>
+    <hr />
+    <div>
+        <h2>音视频标签</h2>
+        <p>loop：自动播放</p>
+        <p>preload：自动缓冲视频，预加载，与autoplay冲突</p>
+        <p>muted：静音</p>
+        <p>poster：显示占位图片</p>liu
+        <p>autoplay：自动播放</p>
+        <!--Ogg/MPEG4/WebM-->
+        <video src="../data/movie.ogg" controls muted loop poster="../data/logo.png"></video>
+        <!-- 为了解决浏览器视频兼容问题，w3c推出source视频标签 -->
+        <source src="" type="">
+    </div>
+    <hr />
 </body>
 
 </html>
