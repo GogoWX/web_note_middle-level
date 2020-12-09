@@ -8,6 +8,13 @@
     <title>HTML_basis</title>
     <!-- base标签是设置网页中的超链接的统一基本设置 -->
     <!-- <base target="_blank"> -->
+    <style>
+        marquee {
+            width: 300px;
+            height: 200rpx;
+            background-color: aqua;
+        }
+    </style>
 </head>
 
 <body>
@@ -217,9 +224,61 @@
         <!--Ogg/MPEG4/WebM-->
         <video src="../data/movie.ogg" controls muted loop poster="../data/logo.png"></video>
         <!-- 为了解决浏览器视频兼容问题，w3c推出source视频标签 -->
-        <source src="" type="">
+        <video controls muted loop poster="../data/logo.png">
+            <source src="../data/movie.ogg" type="video/ogg">
+            <source src="../data/movie.mpeg4" type="video/mpeg4">
+            <source src="../data/movie.webm" type="video/webm">
+            <object data="../data/movie.mp4" width="320" height="240">
+                <embed width="320" height="240" src="../data/movie.swf">
+            </object>
+        </video>
+        <!--Ogg/MP3/Wav-->
+        <audio src="../data/horse.mp3" controls></audio>
+        <audio controls>
+            <source src="../data/horse.mp3" type="audio/mpeg">
+            <source src="../data/horse.ogg" type="audio/ogg">
+            <object data="../data/horse.mp3">
+                <embed src="../data/horse.mp3">
+            </object>
+        </audio>
     </div>
     <hr />
+    <div>
+        <h2>详情与概要标签</h2>
+        <details>
+            <summary>概要信息</summary>
+            详情信息
+        </details>
+    </div>
+    <hr />
+    <div>
+        <!-- marquee不是w3c支持的标签，但是各大浏览器支持较号 -->
+        <h2>跑马灯/弹幕效果标签</h2>
+        <p>direction: 滚动方向left/right/up/down</p>
+        <p>loop: 滚动次数，默认-1，为无限</p>
+        <p>scrollamount: 滚动速度1~100</p>
+        <p>behavior: slide滚动并停止在边界，alternate</p>
+        <marquee scrollamount='1' direction="right">
+            <p>弹幕键盘侠来也</p>
+            <p>弹幕键盘侠来也</p>
+            <p>弹幕键盘侠来也</p>
+            <p>弹幕键盘侠来也</p>
+        </marquee>
+        <marquee behavior="slide" scrollamount='10' direction="up">
+            <p>弹幕键盘侠来也</p>
+        </marquee>
+        <marquee behavior="alternate" scrollamount='50' direction="left">
+            <p>弹幕键盘侠来也</p>
+        </marquee>
+        <marquee scrollamount='100' direction="down">
+            <p>弹幕键盘侠来也</p>
+        </marquee>
+    </div>
+    <hr />
+    <div>
+        <h2>字符实体</h2>
+        <p>部分字符在html中有特殊含义的，不能再浏览器中直接显示出来，因此需要有字符实体，如：&nbsp; &copy;</p>
+    </div>
 </body>
 
 </html>
