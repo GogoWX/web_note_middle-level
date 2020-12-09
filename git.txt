@@ -1,0 +1,70 @@
+git学习笔记
+
+1、git 安装与初始设置
+设置名字：git config --global user.name "" 
+设置邮箱：git config --global user.email ""
+2、创建及初始化仓库
+新建文件：mkdir 文件名 
+初始化仓库：git init
+查看当前路径：pwd
+展开文件：ls
+3、时光穿梭机
+推送至缓存区：git add 文件名
+推送至仓库：git commit (-m 提交的详情介绍)
+查看仓库当前状态：git status
+查看文件内容：cat 文件名
+查看文件修改：git diff 文件名
+查看工作区与版本库最新一版的区别：git diff HEAD -- 文件名
+查看版本库列表：git log （--pretty=oneline 只显示简要信息 --abbrev-commit）
+查看版本库操作列表：git reflog
+回退版本：git reset --hard HEAD^：回退至上一版本；HEAD~10：回退10个版本；3f57版本id前几位：回退至指定id版本
+清除工作区的修改：git checkout -- 文件名
+撤销暂存区的修改：git reset HEAD 文件名
+删除文件：rm 文件名
+确认从版本库删除文件：git rm 文件名 => git commit    误删还原 git checkout -- 文件名
+4、远程仓库
+创建链接GitHub 的SSH Key： ssh-keygen -t rsa -C "youremail@example.com" （windows用户主目录下，生成公私钥，将公钥放置在GitHub上）
+查看远程仓库信息：git remote -v（-v为详情）
+删除已有的远程库：git remote rm origin
+关联本地仓库与github仓库：git remote add origin https://github.com/example/test.git
+从远程仓库克隆一个本地库：git clone https://github.com/example/test.git
+推送本地库内容至远程库：git push -u origin master （-u为首次为将本地与远程端的master关联用，之后的推送可和拉取可省略,master为分支名称）git pull origin master --allow-unrelated-histories
+5、分支管理
+查看分支：git branch
+创建分支：git branch 文件名
+切换分支：git checkout 分支名 或者 git switch 分支名（未成功）
+创建+切换分支：git checkout -b 分支名 或者 git switch -c 分支名
+合并某分支到当前分支：git merge 分支名 
+合并分支留痕，禁用Fast forward：git merge --no-ff -m "merge with no-ff" 分支名
+删除分支：git branch -d 分支名
+合并分支冲突后，修改重新add、commit恢复
+储藏工作区未提交代码：git stash 用于临时需要拉取其他分支修复bug
+查看储存代码列表：git stash list 
+恢复存储代码：git stash apply stash@{0}（恢复指定存储到工作区）
+删除存储代码：git stash drop stash@{0}（删除指定存储）
+恢复并删除储存代码：git stash pop
+复制一个特定的提交到当前分支：git cherry-pick 提交版本号commit
+强制删除一个未被合并的分支：git branch -D 分支名
+创建本地和远程对应分支：git checkout -b 分支名 origin/分支名
+关联本地分支与远程分支：git branch --set-upstream-to(或者--track) 分支名 origin/分支名
+拉取远程仓库代码：git pull
+整理提交历史为一条直线（变基）：rebase
+6、标签管理
+查看所有标签：git tag 
+设置最近一次提交标签：git tag v1.0 （v1.0标签名）
+设置某一指定提交的标签：git tag v0.9 f52c633 （f52c633 版本号）
+查看某一标签信息：git show v1.0
+设置带说明的标签：git tag -a v1.0 -m "version 1 released" 1094adb（-a指定标签名，-m指定说明文字）
+推送本地标签至远程：git push origin 标签名
+提送全部标签至远程：git push origin --tags
+删除一个本地标签：git tag -d 标签名
+删除一个远程标签：git push origin :refs/tags/标签名
+
+在服务端更新代码时，git pull时总是出现需要编辑一个commit message，git status 查看了下，原来是服务端有部分代码需要commit后尚未push导致。
+
+这种问题，解决办法如下：
+
+如果你本地仓库不需要push（这里编辑默认使用的是vi编辑器）
+如需要修改，键盘输入i或a进入vi编辑模式，鼠标移动到第一行编辑默认的commit message合并备注，编辑后按esc进入vi命令模式，输入:wq退出即可
+如不需要修改，直接esc进入vi命令模式，:q退出编辑，使用默认合并备注
+如果不想每次pull时都出现这个编辑界面，push你本地的commit内容即可
