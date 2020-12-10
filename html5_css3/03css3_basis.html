@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3_basis</title>
+    <style type="text/css">
+        .cep {
+            font: italic bolder 20px "微软雅黑";
+            text-decoration: overline;
+            text-decoration: underline;
+            text-decoration: line-through;
+            text-decoration: none;
+        }
+
+        .brother+p {
+            color: red;
+        }
+
+        .brother_all~p {
+            color: green;
+        }
+
+        /* 同级别，同类型得第一个 */
+        div p:first-of-type {
+            font-style: italic;
+        }
+        /* 同级别的第一个，若第一个不相同（如下，不是p）则不生效 */
+        p:first-child {
+            color: orange;
+        }
+        /* 同级别第n个元素不区分类型 */
+        P:nth-child(4) {
+            color: blue;
+        }
+        /* 同级别，同类型得第n个 */
+        p:nth-of-type(4) {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>设置字体样式</h2>
+        <p>第一个p</p>
+        <p class="brother">相邻兄弟选择器：+</p>
+        <p>font样式简写，size和family必须写在最后，size必须写在family前</p>
+        <p>文本装饰：text-decoration，最常见用属性none，清除文本装饰效果</p>
+        <p class="brother_all">后边所有兄弟选择器：~</p>
+        <p>段落缩进：text-indent: 2em</p>
+        <p class="cep">this is a 中英混合</p>
+    </div>
+</body>
+
+</html>
