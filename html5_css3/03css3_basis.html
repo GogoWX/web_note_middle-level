@@ -30,12 +30,17 @@
         p:first-child {
             color: orange;
         }
-        /* 同级别第n个元素不区分类型 */
+        /* 同级别第n个元素不区分类型，odd为奇数/even为偶数 */
         P:nth-child(4) {
             color: blue;
         }
-        /* 同级别，同类型得第n个 */
+        /* 同级别，同类型得第n个，odd为奇数/even为偶数,x*n+y*/
         p:nth-of-type(4) {
+            color: red;
+        }
+
+        /* 同级别，唯一的一个标签 */
+        h2:only-child {
             color: red;
         }
     </style>
@@ -51,6 +56,18 @@
         <p class="brother_all">后边所有兄弟选择器：~</p>
         <p>段落缩进：text-indent: 2em</p>
         <p class="cep">this is a 中英混合</p>
+    </div>
+    <div>
+        <h2>属性选择器</h2>
+        <p>p[attribute]</p><!--attribute为属性名称-->
+        <p>p[attribute=value]</p>
+        <p>p[attribute^=value]属性取值是否是以什么开头的</p>
+        <p>p[attribute$=value]属性取值是否是以什么结尾的</p>
+        <p>p[attribute*=value]属性取值包含某个特定值</p>
+    </div>
+    <div>
+        <h2>通配选择器</h2>
+        <p>*由于通配符选择器是设置页面上所有标签的属性，所以设置之前会遍历所有标签，如果界面上的标签过多，那么性能就比较差</p>
     </div>
 </body>
 
