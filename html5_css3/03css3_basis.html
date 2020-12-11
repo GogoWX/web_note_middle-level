@@ -94,6 +94,30 @@
         <p>块级元素：p div h ul ol dl dt dd</p>
         <p>行内元素：span strong em ins del</p>
     </div>
+    <div>
+        <h2>背景图片</h2>
+        <p>background-image：可以为网络地址或者是本地地址</p>
+        <p>背景平铺background-repeat: no-repeat/repeat-x/repeat-y</p>
+        <p>背景定位background-position: 水平方向(left/center/right/具体像素) 垂直方向(top/center/bottom/具体像素)，
+            多图片合成可用多div背景嵌套实现</p>
+        <p>背景大小background-size: 100% 100%</p>
+        <p>背景与滚动条关联：background-attachment: scroll(滚动)/fixed(不随之滚动)</p>
+        <p>背景图片与img插入图片的区别: 背景图片不会占用空间，插入图片会；背景图片方便定位；插入图片的语义比背景图片
+            的语义要强，若想要图片被搜索引擎搜到，选择插入图片比较好</p>
+    </div>
+    <div>
+        <h2>精灵图</h2>
+        <p>css精灵图是一种图像合成技术，由于网页图片过多导致服务器处理请求次数过多，因此将所有图片合成一张图片上，减少请求次数，降低服务器压力。</p>
+        <p>通过背景定位来使用图片上的每一个图标</p>
+    </div>
+    <div>
+        <h2>盒子模型</h2>
+        <p>盒子内容的宽度和高度正常情况下就是height和width</p>
+        <p>元素的宽度和高度包含内容宽高+内边距+边框</p>
+        <p>元素空间的宽度和高度包含内容宽度+内边距+边框+外边距</p>
+        <p>margin本质上是控制兄弟元素之间的空隙的，子元素添加margin-top会将父元素外面生效，为了防止父级顶下来，可给父级设置一个边框；</p>
+        <p>margin: 0 auto;设置盒子水平居中；text-align: center;设置盒子内容的text/image水平剧中</p>
+    </div>
 </body>
 
 </html>
