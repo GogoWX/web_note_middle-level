@@ -157,13 +157,28 @@
         <h2>css3动画</h2>
         <p>创建动画：@keyframes xxx {
             from{
-                margin-left: 0
+            margin-left: 0
             }to {
-                margin-left: 50px
+            margin-left: 50px
+            }
+            或者
+            0% {
+
+            }
+            20%{
+
+            }
+            100%{
+
             }
             }</p>
-        <p>使用动画：animation-name: xxx;</p>
-        <p>动画属性设置: </p>
+        <p>使用动画: animation-name: xxx;</p>
+        <p>动画属性设置: animation-duration(动画执行周期) animation-delay(延迟时间) animation-timing-function(执行速度变量)
+            animation-iteration-count(动画播放次数) animation-direction:alternate(执行完毕后往返)
+            animation-play-state(running/paused动画执行/暂停)
+            animation-fill-mode: none/backwards/fowards/both(无效果/指定动画等待状态为第一帧状态/指定动画结束状态保持为最后一帧/同时保持两种状态)
+        </p>
+        <p>动画属性设置连写: </p>
     </div>
 </body>
 
