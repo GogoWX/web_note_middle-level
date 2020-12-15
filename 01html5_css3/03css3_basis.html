@@ -174,11 +174,12 @@
             }</p>
         <p>使用动画: animation-name: xxx;</p>
         <p>动画属性设置: animation-duration(动画执行周期) animation-delay(延迟时间) animation-timing-function(执行速度变量)
-            animation-iteration-count(动画播放次数) animation-direction:alternate(执行完毕后往返)
+            animation-iteration-count: infinite(动画播放次数 无限) animation-direction: normal/alternate(执行完毕后往返)
             animation-play-state(running/paused动画执行/暂停)
             animation-fill-mode: none/backwards/fowards/both(无效果/指定动画等待状态为第一帧状态/指定动画结束状态保持为最后一帧/同时保持两种状态)
         </p>
-        <p>动画属性设置连写: </p>
+        <p>动画属性设置连写: 动画名称 动画周期 动画运动速度曲线 延迟时间 执行次数 往返动画</p>
+        <p>无限滚动收尾相接：将尾部添加第一张图片 移动到最后一张（也就是新添加得第一张）后一次动画结束跳转到第一张，达到无缝连接得效果</p>
     </div>
 </body>
 
