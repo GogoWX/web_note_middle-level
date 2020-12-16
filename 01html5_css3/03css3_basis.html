@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS3_basis</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <style type="text/css">
         .cep {
             font: italic bolder 20px "微软雅黑";
@@ -50,6 +51,10 @@
 </head>
 
 <body>
+    <div>
+        <h2>css书写格式</h2>
+        <p>行内样式/内嵌样式(head中的style)/外链样式(先加载样式，再加载结构)/导入样式(head的style中 @import "";css2.1推出，有兼容问题，先加载结构，后加载样式)</p>
+    </div>
     <div>
         <h2>设置字体样式</h2>
         <p>第一个p</p>
@@ -100,10 +105,14 @@
         <p>背景平铺background-repeat: no-repeat/repeat-x/repeat-y</p>
         <p>背景定位background-position: 水平方向(left/center/right/具体像素) 垂直方向(top/center/bottom/具体像素)，
             多图片合成可用多div背景嵌套实现</p>
-        <p>背景大小background-size: 100% 100%</p>
         <p>背景与滚动条关联：background-attachment: scroll(滚动)/fixed(不随之滚动)</p>
         <p>背景图片与img插入图片的区别: 背景图片不会占用空间，插入图片会；背景图片方便定位；插入图片的语义比背景图片
             的语义要强，若想要图片被搜索引擎搜到，选择插入图片比较好</p>
+        <p>背景尺寸图片background-size：默认/具体像素/百分比/高度固定，宽度等比拉伸(auto xxx)/宽度固定，高度等比拉伸(xxx auto)/cover(等比拉伸，并填满)/
+            contain(等比拉伸，拉伸到宽度或者高度填满为止)</p>
+        <p>规定背景图片定位区域background-origin：默认padding处定位/padding-box/border-box/content-box</p>
+        <p>规定背景绘制区域属性background-clip: 默认从boder开始绘制/padding-box/border-box/content-box</p>
+        <p>多重背景图片: 多张图片设置以逗号分隔开来，先添加的背景图片会遮盖住后添加的背景图片，建议拆开每个背景属性单独写</p>
     </div>
     <div>
         <h2>精灵图</h2>
