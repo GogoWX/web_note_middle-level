@@ -16,7 +16,7 @@
     <!--搜索引擎处理方式：noindex - 不要索引此页面 noarchive - 不要创建此页面的存档或缓存版本 nofollow - 不要追踪（即抓取）此页面的链接-->
     <!-- <meta http-equiv='refresh' content='5'> -->
     <!--规定每五秒重新加载页面，5;http://www.demo.com格式会在五秒后跳转页面-->
-    <base href="../data/"><!-- 设置默认链接地址 -->
+    <base href="data/"><!-- 设置默认链接地址 -->
     <title>Document</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!--[if lt IE 9]>
@@ -40,7 +40,7 @@
 
         .bgi {
             padding: 20px;
-            background-image: url('../data/bgi_paper.gif');
+            background-image: url('data/bgi_paper.gif');
             background-repeat: repeat;
             -webkit-background-origin: content-box;
             background-origin: content-box;
@@ -81,7 +81,7 @@
             text-align: right;
         }
     </style>
-    <script src="../js/case.js" defer></script>
+    <script src="js/case.js" defer></script>
     <!--外联脚本属性 defer：延迟加载，在html加载完成后加载；async：异步加载，html解析与脚本加载同时进行，可以异步地执行不与HTML文档中的元素交互的自包含脚本，不适用于依赖于由其他脚本定义的函数或值的脚本。-->
     <noscript>
         <h1>Javascript is required!</h1>
@@ -104,7 +104,7 @@
             <div id="sseResult"></div>
             <script>
                 if (typeof (EventSource) !== 'undefined') {
-                    var source = new EventSource('../php/index.php')
+                    var source = new EventSource('php/index.php')
                     source.onmessage = function (event) {
                         document.getElementById("sseResult").innerHTML = event.data;
                     }
@@ -125,7 +125,7 @@
                 function startWorker() {
                     if (typeof (Worker) !== 'undefined') {
                         if (w == undefined) {
-                            w = new Worker('../js/demo_worker.js');
+                            w = new Worker('js/demo_worker.js');
                         }
                         w.onmessage = function (event) {
                             document.getElementById('result').innerHTML = event.data;
