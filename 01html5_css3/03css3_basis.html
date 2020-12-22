@@ -203,8 +203,13 @@
     <div>
         <h2>渐变</h2>
         <p>background: linear-gradient(to right top,yellow,red)</p>
-        <p>background: linear-gradient(to 45deg,yellow,red)</p>
-        <p>指定纯色的范围：background: linear-gradient(to 45deg,yellow 30px,red 10px)</p>
+        <p>background: linear-gradient(45deg,yellow,red)</p>
+        <p>指定纯色的范围：background: linear-gradient(45deg,yellow 30px,red 10px)</p>
+        <p>-webkit-background-clip: text;
+            -moz-background-clip: text;
+            -o-background-clip: text;
+            -ms-background-clip: text;
+            background-clip: text;;将背景裁剪为文字范围（前提是文字被设置成透明transparent）</p>
     </div>
 </body>
 
