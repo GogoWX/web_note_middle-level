@@ -27,6 +27,17 @@
         <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
     <style>
+        header,
+        section,
+        footer,
+        aside,
+        nav,
+        main,
+        article,
+        figure {
+            display: block;
+        }
+
         section,
         header {
             width: 100%;
@@ -109,7 +120,7 @@
                         document.getElementById("sseResult").innerHTML = event.data;
                     }
                 } else {
-                    document.getElementById("sseResult").innerHTML = "抱歉，你的浏览器不支持 server-sent 事件...";
+                    document.getElementById("sseResult").innerHTML = "抱歉，您的浏览器不支持 server-sent 事件...";
                 }
             </script>
         </section>

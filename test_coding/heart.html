@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heart</title>
+    <style>
+        .all {
+            width: 450px;
+            height: 400px;
+            margin: 100px auto;
+            position: relative;
+            animation: sport 1s linear 0s infinite;
+        }
+
+        .left,
+        .right {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            box-shadow: 0 0 40px red;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+
+        .bottom {
+            width: 250px;
+            height: 250px;
+            background-color: red;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%) rotateZ(45deg);
+            box-shadow: 0 0 40px red;
+        }
+
+        @keyframes sport {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+
+</html>
