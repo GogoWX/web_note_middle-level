@@ -210,6 +210,25 @@
             -o-background-clip: text;
             -ms-background-clip: text;
             background-clip: text;;将背景裁剪为文字范围（前提是文字被设置成透明transparent）</p>
+        <p>径向渐变：background: radial-gradient(100px,at left top,green,red)</p>
+    </div>
+    <div>
+        <h2>伸缩布局</h2>
+        <p>display: flex;</p>
+        <p>flex-direction: row-reverse/column;reverse反转方向</p>
+        <p>justify-content: flex-start/flex-end/center/baseline/space-between/space-around;主轴对齐方式,baseline基线对齐</p>
+        <p>align-item: flex-start/flex-end/center/stretch;侧轴对齐方式;stretch子元素若不设置高度则会拉伸至父元素高度</p>
+        <p>flex-wrap:wrap-reverse;换行后行的顺序颠倒</p>
+        <p>align-content: flex-start/flex-end/flex-center/space-around/stretch;设置换行之后整体的对齐方式,stretch以行为单位进行拉伸，
+            拉伸的部分以空白填充，保证拉伸之后所有的行加起来能够填满侧轴。</p>
+        <p>align-self:flex-end;控制单一子元素的伸缩样式</p>
+        <p>order: 9;在父级flex布局下，伸缩项排序，order越大排序越靠后</p>
+        <p>flex-grow: 0/1/2...;当伸缩项宽度总和小雨容器宽度时，伸缩项是否扩充至伸缩容器宽度，0不扩充，大于0,数越大占的份额越大。</p>
+        <p>flex-shrink: 0/1/2/...;当伸缩项的宽度总和大于容器，可控制伸缩项的伸缩比例，数值越大伸缩越大
+            计算公式：当前伸缩项宽度 - 总溢出宽度 * 当前伸缩项宽度 * 当前伸缩项需要的分数 / 权重值（每个伸缩项所需的分数与它的宽度之积的总和）；
+        </p>
+        <p>扩充与缩小的是宽度还是高度由主轴的方向决定，也就是flex-direction: row/column;</p>
+        <p>flex-basis: 100px;伸缩项宽度设置，会覆盖原有宽度，除非设置的为auto等不确定值</p>
     </div>
 </body>
 
