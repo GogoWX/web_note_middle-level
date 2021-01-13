@@ -1,0 +1,14 @@
+/* 背景开始 */
+video {
+    width: 100%;
+    /* height: 1080px; */
+    /* 等比拉伸，填满父级元素 */
+    /* object-fit: cover; */
+}
+/* 背景结束 */
+.header {
+    width: 1196px;
+}
+.header>ul {
+    list-style: none;
+}
