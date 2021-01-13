@@ -1,14 +1,221 @@
 /* 背景开始 */
 video {
     width: 100%;
-    /* height: 1080px; */
-    /* 等比拉伸，填满父级元素 */
-    /* object-fit: cover; */
+    height: 1080px; 
+    object-fit: cover;/* 等比拉伸，填满父级元素*/
 }
 /* 背景结束 */
+/* header开始 */
 .header {
     width: 1196px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
 }
+
+h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h1 img {
+    width: 393px;
+    margin: 0;
+    padding: 0;
+}
+
 .header>ul {
+    margin: 0;
+    padding: 0;
+    padding-top: 45px;
     list-style: none;
 }
+
+.header>ul>li {
+    float: left;
+    width: 200px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: linear-gradient(to bottom,#46018c,#0200a1);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+}
+
+.header>ul>li:last-child {
+    border-right: none;
+    background: url("../images/download2.0.png") no-repeat;
+}
+
+.header>ul>li:last-child a {
+    background: none;
+}
+
+.header>ul>li:nth-child(2) {
+    margin-right: 393px;
+    border-right: none;
+}
+
+.header>ul>li>a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    background: url("../images/nav-itembg.png");
+    transition: border-color 0.5s;
+    box-sizing: border-box;
+}
+
+.header>ul>li>a:hover {
+    border-color: #fff;
+}
+/* header结束 */
+
+/*内容开始*/
+.container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1080px;
+}
+
+.container>.slogan {
+    margin-top: 235px;
+    position: absolute;
+    top: 235px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container>.list {
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 1010px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.container>.list>li {
+    width: 310px;
+    height: 205px;
+    position: relative;
+}
+
+.container>.list>li:nth-child(1) {
+    animation: move 1s linear 1s normal forwards;
+    /* animation-fill-mode: forwards; */
+}
+
+.container>.list>li:nth-child(2) {
+    animation: move 1s linear 2s normal forwards;
+}
+
+.container>.list>li:nth-child(3) {
+    animation: move 1s linear 3s normal forwards;
+}
+
+@keyframes move {
+    from {
+        bottom: 0;
+    }
+    to {
+        bottom: 120px;
+    }
+}
+.container>.list>li>h3 {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    background: #15112d;
+    border: 2px solid #2a2658;
+    box-sizing: border-box;
+}
+
+.container>.list>li>a {
+    display: inline-block;
+    width: 100%;
+    border: 2px solid #655fc7;
+    box-sizing: border-box;
+}
+
+.container>.list>li>a>img {
+    width: 100%;
+}
+
+/* 内容结束 */
+
+.foot {
+    z-index: 999;
+    width: 100%;
+    height: 502px;
+    background: #0d0017;
+    position: absolute;
+    top: 1080px;
+    left: 0;
+}
+
+.foot-in {
+    width: 1000px;
+    height: 422px;
+    margin: 0 auto;
+    background: skyblue;
+}
+
+.foot-top a{
+    display: inline-block;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.foot-top a i {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin-right: 10px;
+    background: url("../images/footer-top.png") no-repeat;
+    background-position: -6px -7px;
+    vertical-align: middle;
+}
+
+.foot-top a:nth-child(2) i {
+    background-position: -36px -8px;
+}
+
+.foot-top a:nth-child(2) i {
+    background-position: -6px -100px;
+}
+
+.foot-top span {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.foot-top i {
+    display: inline-block;
+    width: 95px;
+    height: 26px;
+    background: url("../images/footer-top.png") no-repeat;
+    background-position: -142px -44px;
+}
+
