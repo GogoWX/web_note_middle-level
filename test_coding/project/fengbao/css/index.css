@@ -158,28 +158,33 @@ h1 img {
 
 .container>.list>li>a>img {
     width: 100%;
+    vertical-align: bottom;
 }
 
 /* 内容结束 */
 
-.foot {
+.footer {
     z-index: 999;
     width: 100%;
     height: 502px;
     background: #0d0017;
+    border-top: 2px solid #655fc7;
     position: absolute;
     top: 1080px;
     left: 0;
 }
 
-.foot-in {
+.footer-in {
     width: 1000px;
     height: 422px;
     margin: 0 auto;
-    background: skyblue;
 }
 
-.foot-top a{
+.footer-top {
+    padding: 125px 0 45px;
+}
+
+.footer-top a{
     display: inline-block;
     text-decoration: none;
     margin-right: 10px;
@@ -187,7 +192,12 @@ h1 img {
     color: #fff;
 }
 
-.foot-top a i {
+.footer-top p {
+    height: 30px;
+    line-height: 30px;
+}
+
+.footer-top a i {
     display: inline-block;
     width: 19px;
     height: 19px;
@@ -197,25 +207,77 @@ h1 img {
     vertical-align: middle;
 }
 
-.foot-top a:nth-child(2) i {
+.footer-top a:nth-child(2) i {
     background-position: -36px -8px;
 }
 
-.foot-top a:nth-child(2) i {
+.footer-top a:nth-child(2) i {
     background-position: -6px -100px;
 }
 
-.foot-top span {
+.footer-top span {
     margin: 0 10px;
     font-size: 14px;
     color: #fff;
 }
 
-.foot-top i {
+.footer-top i {
     display: inline-block;
     width: 95px;
     height: 26px;
     background: url("../images/footer-top.png") no-repeat;
     background-position: -142px -44px;
+    vertical-align: top;
 }
 
+.footer-top b {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 14px;
+    font-size: 12px;
+    background: #2b0473;
+    border: 1px solid #462385;
+}
+
+.footer-middle>.middle-left {
+    /* 注意点：开发中，如果元素是左浮动的就不要设置margin-left属性，否则有时会出现BUG */
+    margin-right: 75px;
+}
+
+.footer-middle>.middle-right {
+    font-size: 14px;
+}   
+
+.footer-middle>.middle-right a{
+    text-decoration: none;
+    color: #ccc;
+}   
+
+.footer-middle>.middle-right span {
+    color: #ccc;
+    margin: 0 10px;
+}
+
+.footer-middle>.middle-right>div p,.footer-middle>.middle-right>div p a{
+    font-size: 12px;
+    color: #8eb1bc;
+}
+
+.footer-middle>.middle-right>div p a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    padding-top: 35px;
+}
+
+.footer-bottom p {
+    width: 100%;
+    font-size: 12px;
+    color: #417aa1;
+    line-height: 10px;
+    text-align: center;
+}
