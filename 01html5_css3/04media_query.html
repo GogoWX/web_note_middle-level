@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询基本使用</title>
+    <!-- 
+        1.如果需要用媒体查询给电脑、平板、手机分别设置样式，须按照电脑、平板、手机这样的顺序设置；
+        2.媒体查询的宽度不固定，视自身需求决定。
+     -->
+    <link rel="stylesheet" href="xxx.css" media="screen and (min-width: 1200px)">
+    <link rel="stylesheet" href="xxx1.css" media="screen and (max-width: 1199px)">
+    <link rel="stylesheet" href="xxx2.css" media="screen and (max-width: 768px)">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        @media screen and (min-width: 1200px) {
+            div {
+                width: 500px;
+                height: 500px;
+                background: red;
+            }
+        }
+        @media screen and (max-width: 1199px) {
+            div {
+                width: 300px;
+                height: 300px;
+                background: green;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            div {
+                width: 100px;
+                height: 100px;
+                background: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        1.媒体查询就是获取到当前浏览器的宽度，根据不同的宽度设置元素不同的样式；
+        2.媒体查询由于需要调整元素样式，所以不适合用于比较复杂的网页；
+        3.媒体查询的格式：@media 条件{} 含义：如果条件满足，就执行{}里的代码
+        3.1内联格式：@media 条件{}
+        3.2外联格式：<link rel="stylesheet" href="xxx.css" media="screen and (min-width: 1200px)">
+     -->
+     <div></div>
+</body>
+</html>
