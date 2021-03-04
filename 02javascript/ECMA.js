@@ -216,4 +216,55 @@ let res = arr.slice(1,2)截取数组中的片段，包头不包尾，不会对�
 let num = arr.indexOf(3需要查找的元素,4查找开始的index值)查找数组中第一个3的位置index，如果数组中不包含3则返回-1  let num = arr.lastIndexOf(3,4)从后开查
 可以通过indexOf()和lastIndexOf()的返回值是否是-1来判断数组中是否包含某个值
 ES6 arr.includes(3) 直接返回true/false
+arr.fill(0)将数组所有元素变成0
    */
+
+//数组计数排序：
+//缺点：无法对负数排序，对数值较大的排序不友好
+
+(function () {
+  let arr = [9, 2, 3, 9, 1];
+  let res = new Array(10);
+  let c = [];
+  res.fill(0);
+  for (let i = 0; i < arr.length; i++) {
+    let ri = arr[i]
+    res[ri] = res[ri] + 1
+  }
+  for (let i = 0; i < res.length; i++) {
+    for (let j = 0; j < res[i]; j++) {
+      c.push(i)
+    }
+  }
+  console.log('计数排序法：', c)
+})();
+
+//数组选择排序
+(function () {
+  let arr = [6, -3, 100, 8, 6]
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        [arr[i], arr[j]] = [arr[j], arr[i]]
+      }
+    }
+  }
+  console.log('选择排序法：', arr)
+})();
+
+//数组冒泡排序
+(function () {
+  let arr = [6, -3, 100, 8, 6]
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+      }
+    }
+  }
+  console.log('冒泡排序法：', arr)
+})();
+
+/*
+
+*/
