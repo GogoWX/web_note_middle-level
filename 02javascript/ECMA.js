@@ -282,6 +282,27 @@ arguments 函数是所有实参的伪数组
   getSum(10,20,30)
 })();
 
-/*函数 作为参数和返回值
+//函数作为其他函数的参数
+(function() {
+  let say = function() {
+    console.log('函数作为其他函数的参数')
+  }
+  function test(fn) {
+    fn()
+  }
+  test(say)
+})();
 
-*/
+//函数作为其他函数的返回值
+(function() {
+  function test() {
+    let say = function() {
+      console.log('函数作为其他函数的返回值')
+    }
+    return say;
+  }
+  let fn = test();
+  fn()
+})();
+
+//匿名函数
