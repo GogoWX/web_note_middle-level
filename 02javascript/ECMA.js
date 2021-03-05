@@ -265,6 +265,23 @@ arr.fill(0)将数组所有元素变成0
   console.log('冒泡排序法：', arr)
 })();
 
-/*
+/*函数 专门用于封装代码 是一段可以被反复执行的代码块 function say() {执行代码} let say = function() {}
+arguments 函数是所有实参的伪数组
+函数扩展运算符：let [a,...b] = [1,2,3,4,5]  放在左边表示将剩余数据打包 let res = [...arr1,...arr2]放在右侧将数组中的值取出来
+*/
+
+//函数扩展运算符例子
+(function() {
+  function getSum(...values) {
+    let sum = 0;
+    for(let i=0;i<values.length;i++) {
+      sum += values[i]
+    }
+    console.log('函数扩展运算符：',sum)
+  }
+  getSum(10,20,30)
+})();
+
+/*函数 作为参数和返回值
 
 */
