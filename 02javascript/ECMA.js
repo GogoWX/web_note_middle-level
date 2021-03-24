@@ -348,12 +348,43 @@ function Person(myName,myAge) {
   //let this = obj;系统自动添加
   this.name = myName;
   this.age = myAge;
-  this.say = function() {
-    console.log("My name is " + this.name)
-  }
+  this.currentType = '构造函数中的currentType';
+  //由于obj1 和 obj2 中的 say方法相同但是，却分别分配了两块存储空间，可进行性能优化
+  // this.say = function() {
+  //   console.log("My name is " + this.name)
+  // }
   //return this;系统自动添加
 }
+Person.prototype = {
+  say: function() {
+    console.log("My name is " + this.name)
+  },
+  currentType: 'author',
+
+}
 let obj1 = new Person("WX",27);
-console.log(obj1);
-obj1.say()
+let obj2 = new Person("xw",27);
+console.log(obj1.say === obj2.say);
 console.log(obj1.age)
+console.log(obj1.currentType)
+obj1.say()
+obj2.say()
+/** prototype 原型
+ * 特点：1、存储在prototype中的方法可以被对应的构造函数创建出来的所有对象共享；2、prototype中除了可以存储方法以外，还可以存储属性；
+ * 3、如果构造函数中存在相同的属性或者方法，对象在访问时，访问到的是构造函数中的数据而不是prototype中的数据;
+ * 
+ * 应用场景：prototype中一般情况下存储所有对象都相同的一些属性和方法，如果是对象特有的属性或者方法，我们会存储到构造函数中；
+ * 
+ * 对象的三角恋关系：1、每个“构造函数”中都有一个默认的属性，叫做prototype，prototype属性保存着一个对象，这个对象我们称之为“原型对象”；
+ * 2、每个“原型对象”中都有一个默认的属性“constructor”,它对应的是当前原型对象对应的那个“构造函数”;3、通过构造函数创建出来的对象我们称
+ * 之为“实例对象”，每个“实例对象”中都有一个默认的属性，叫做__proto__，__proto__指向创建它的那个构造函数的“原型对象”；如上obj1.__proto__ === Person.prototype
+ * 
+ * Function构造函数，所有的函数都是通过Function构造函数创建出来的实例。特殊：Function.__proto__ === Function.prototype，构造函数的__proto__与prototype相同
+ * Object构造函数以及自定义的构造函数都为Function构造函数的实例，Object.__proto__ === Function.prototype;
+ * 
+ * 注意：Function构造函数 与 自定义构造函数 的原型对象prototype的 __proto__都指向（等于）Object构造函数的原型对象（Object.prototype）；
+ * 而Object.prototype.__proto__ = NULL
+ */
+console.log(Object.__proto__ === Function.prototype)
+console.log(Function.prototype.__proto__ === Object.prototype,Person.prototype.__proto__ === Object.prototype)
+
