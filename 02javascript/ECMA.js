@@ -356,11 +356,11 @@ function Person(myName,myAge) {
   //return this;系统自动添加
 }
 Person.prototype = {
+  constructor: Person,
   say: function() {
     console.log("My name is " + this.name)
   },
-  currentType: 'author',
-
+  currentType: 'author'
 }
 let obj1 = new Person("WX",27);
 let obj2 = new Person("xw",27);
@@ -384,7 +384,39 @@ obj2.say()
  * 
  * 注意：Function构造函数 与 自定义构造函数 的原型对象prototype的 __proto__都指向（等于）Object构造函数的原型对象（Object.prototype）；
  * 而Object.prototype.__proto__ = NULL
+ * 
+ * 原型链：对象实例访问属性及方法的查找方式：自己本身(obj1)->此类构造函数的原型对象（obj1.__proto__/Person.prototype） 
+ * -> Object构造函数的原型对象（Person.prototype.__proto__/Object.prototype）
  */
 console.log(Object.__proto__ === Function.prototype)
-console.log(Function.prototype.__proto__ === Object.prototype,Person.prototype.__proto__ === Object.prototype)
+console.log(Function.prototype.__proto__ === Object.prototype,Person.prototype.__proto__ === Object.prototype,obj1.__proto__.__proto__ === Object.prototype)
+//注意：obj1.currentType = 'test' 只会修改或添加对象实例obj1的属性或方法 并不会修改或添加obj1.__proto__/Person.prototype中的属性或方法
+obj1.currentType = 'test'
+console.log(obj1.currentType,obj1.__proto__.currentType,obj2.currentType)
 
+/** JS面向对象的三大特性
+ * 封装：隐藏实现细节（隐藏属性及方法），仅对外公开接口
+ * 实例属性/实例方法：通过实例对象访问的属性/方法obj1.name/obj1.say()
+ * 静态属性/静态方法：通过构造函数访问的属性/方法Person.name/Person.say() 可被继承 class Student extends Person{}
+ */
+
+function P() {
+  this.name = 'wx';
+  let age = 27;
+  this.setAge = function (myAge) {
+    if(myAge > 0) {
+      age = myAge
+    }
+  };
+  this.getAge = function() {
+    return age;
+  }
+}
+let p1 = new P();
+p1.setAge(25); //设置操作私有属性
+p1.age = 20;//设置公共变量
+console.log(p1.getAge(),p1.age)
+
+/** 
+ * 继承性：
+ */
