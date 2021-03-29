@@ -271,22 +271,23 @@ arguments 函数是所有实参的伪数组
 */
 
 //函数扩展运算符例子
-(function() {
+(function () {
   function getSum(...values) {
     let sum = 0;
-    for(let i=0;i<values.length;i++) {
+    for (let i = 0; i < values.length; i++) {
       sum += values[i]
     }
-    console.log('函数扩展运算符：',sum)
+    console.log('函数扩展运算符：', sum)
   }
-  getSum(10,20,30)
+  getSum(10, 20, 30)
 })();
 
 //函数作为其他函数的参数
-(function() {
-  let say = function() {
+(function () {
+  let say = function () {
     console.log('函数作为其他函数的参数')
   }
+
   function test(fn) {
     fn()
   }
@@ -294,9 +295,9 @@ arguments 函数是所有实参的伪数组
 })();
 
 //函数作为其他函数的返回值
-(function() {
+(function () {
   function test() {
-    let say = function() {
+    let say = function () {
       console.log('函数作为其他函数的返回值')
     }
     return say;
@@ -342,7 +343,7 @@ JS面向对象
 */
 
 //构造函数 构造函数和工厂函数一样，都是专门用于创建对象的，构造函数的本质是工厂函数的简写；构造函数的函数名称首字母必须大写；构造函数只能通过new来调用；
-function Person(myName,myAge) {
+function Person(myName, myAge) {
   //当new 一个对象系统会自动进行如下操作
   //let obj = new Object();系统自动添加
   //let this = obj;系统自动添加
@@ -357,13 +358,13 @@ function Person(myName,myAge) {
 }
 Person.prototype = {
   constructor: Person,
-  say: function() {
+  say: function () {
     console.log("My name is " + this.name)
   },
   currentType: 'author'
 }
-let obj1 = new Person("WX",27);
-let obj2 = new Person("xw",27);
+let obj1 = new Person("WX", 27);
+let obj2 = new Person("xw", 27);
 console.log(obj1.say === obj2.say);
 console.log(obj1.age)
 console.log(obj1.currentType)
@@ -389,33 +390,33 @@ obj2.say()
  * -> Object构造函数的原型对象（Person.prototype.__proto__/Object.prototype）
  */
 console.log(Object.__proto__ === Function.prototype)
-console.log(Function.prototype.__proto__ === Object.prototype,Person.prototype.__proto__ === Object.prototype,obj1.__proto__.__proto__ === Object.prototype)
+console.log(Function.prototype.__proto__ === Object.prototype, Person.prototype.__proto__ === Object.prototype, obj1.__proto__.__proto__ === Object.prototype)
 //注意：obj1.currentType = 'test' 只会修改或添加对象实例obj1的属性或方法 并不会修改或添加obj1.__proto__/Person.prototype中的属性或方法
 obj1.currentType = 'test'
-console.log(obj1.currentType,obj1.__proto__.currentType,obj2.currentType)
+console.log(obj1.currentType, obj1.__proto__.currentType, obj2.currentType)
 
 /** JS面向对象的三大特性
  * 封装：隐藏实现细节（隐藏属性及方法），仅对外公开接口
  * 实例属性/实例方法：通过实例对象访问的属性/方法obj1.name/obj1.say()
- * 静态属性/静态方法：通过构造函数访问的属性/方法Person.name/Person.say() 可被继承 class Student extends Person{}
+ * 静态属性/静态方法：通过构造函数访问的属性/方法Person.name/Person.say() 可被继承
  */
 
 function P() {
   this.name = 'wx';
   let age = 27;
   this.setAge = function (myAge) {
-    if(myAge > 0) {
+    if (myAge > 0) {
       age = myAge
     }
   };
-  this.getAge = function() {
+  this.getAge = function () {
     return age;
   }
 }
 let p1 = new P();
 p1.setAge(25); //设置操作私有属性
-p1.age = 20;//设置公共变量
-console.log(p1.getAge(),p1.age)
+p1.age = 20; //设置公共变量
+console.log(p1.getAge(), p1.age)
 
 /** 
  * 继承性：在企业开发中如果构造函数和构造函数之间的关系是is a关系，那么就可以使用继承来优化代码，来减少代码的冗余度。
@@ -428,18 +429,19 @@ console.log(p1.getAge(),p1.age)
 let obj = {
   name: 'wx'
 }
-function test(a,b) {
-  console.log(a,b)
+
+function test(a, b) {
+  console.log(a, b)
   console.log(this)
 }
-test(10,20)
-let bindfn = test.bind(obj,10,20);
+test(10, 20)
+let bindfn = test.bind(obj, 10, 20);
 bindfn()
-test.call(obj,50,60)
-test.apply(obj,[1,2])
+test.call(obj, 50, 60)
+test.apply(obj, [1, 2])
 
 function Pthis() {
-  this.say = function() {
+  this.say = function () {
     console.log(this);
   }
 }
@@ -447,41 +449,118 @@ let pt = new Pthis();
 pt.say.apply(obj)
 
 //继承
-function Person2(myName,myAge) {
+function Person2(myName, myAge) {
   //当new 一个对象系统会自动进行如下操作
   //let obj = new Object();系统自动添加
   //let this = obj;系统自动添加
   this.name = myName;
   this.age = myAge;
-  this.say = function() {
-    console.log("My name is " + this.name,',age ' + this.age)
+  this.say = function () {
+    console.log("My name is " + this.name, ',age ' + this.age)
   }
   //return this;系统自动添加
 }
-Person2.prototype.run = function() {
+Person2.prototype.run = function () {
   console.log("it's proto func")
 }
-function Student(myName = '未知',myAge = 18,myScore = 0) {
+
+function Student(myName = '未知', myAge = 18, myScore = 0) {
   //let stu = new Object()
   //let this = stu;
-  Person2.apply(this,arguments);//Person.apply(stu);也就是将Person中的this指向了stu；
+  Person2.call(this, ...arguments); //Person.call(stu);也就是将Person中的this指向了stu；
   //经测试 Student.prototype = new Person2(); 已经将Person2中的属性方法继承给了Student.prototype，只是Student new实例的时候，无法重置this，因此无法将参数传递到
   this.score = myScore;
-  this.study = function() {
+  this.study = function () {
     console.log("day day up")
   }
   //return this;
 }
 Student.prototype = new Person2();
 Student.prototype.constructor = Student;
-let stu = new Student('wxw',27,99)
+let stu = new Student('wxw', 27, 99)
 stu.say();
 stu.study();
-console.log(stu.name,stu.age,stu.score)
+console.log(stu.name, stu.age, stu.score)
 stu.run()
 
-/**多态：指事物的多种状态
+/**多态：指事物的多种状态，同一件事件在不同的对象上，产生不同的结果；
  * 强类型语言：一般编译语言都是强类型语言，强类型语言要求变量的使用要严格符合定义，也就是定义时需规定变量的存储类型，不允许使用其他的数据类型；
  * 弱类型语言：一般解释型语言都是弱类型语言，定义变量时，不必定义其数据类型，允许使用各种数据类型，JS就是弱类型语言，所以不必多关注多态。
+ * 在强类型语言中，多态一般配合继承使用；
+ */
+
+/**ES6类和对象
+ * 定义类的区别：
+ * ES6之前：通过构造函数来定义一个类
+ * ES6：通过class关键字来定义类
  * 
  */
+class PersonES6 {
+  //构造实例属性
+  constructor(myName = 'wx', myAge = 0) {
+    this.name = myName;
+    this.age = myAge;
+    //设置实例属性
+    this.say = function() {
+      console.log("ES6 My name is " + this.name, ',age ' + this.age)
+    }
+  }
+  //设置prototype 原型方法
+  protoFunc() {
+    console.log("ES6 prototype Func")
+  }
+  //ES6正式版不支持使用static定义静态属性，部分浏览器也不支持
+  // static num = 666;
+  //设置静态方法
+  static run() {
+    console.log('static run ' + PersonES6.num)
+  }
+}
+// PersonES6.prototype = {name:'',say(){console.log('error')}}//错！！！通过ES6 创建的类 不能自定义该类的原型对象；
+//因为不会将原有的属性或方法加入进去，比如protoFunc()方法，只能动态添加属性和方法
+PersonES6.num = 666;
+PersonES6.prototype.tage = 18;
+let pes6 = new PersonES6('wxw', 27);
+pes6.say();
+pes6.__proto__.protoFunc();
+console.log(PersonES6.num);
+console.log(pes6.age);
+console.log(pes6.__proto__.tage);
+PersonES6.run();
+
+/**ES6 继承*/
+class StudentES6 extends PersonES6 {
+  constructor(myName,myAge,myScore) {
+    super(...arguments);//等同于 Person2.call(this, ...arguments);会找到父类对象，并将父类的this修改为当前对象。
+    this.score = myScore;
+  }
+}
+
+let ses6 = new StudentES6('wxw', 27, 99);
+console.log('ES6 继承')
+ses6.say();
+ses6.__proto__.protoFunc();
+StudentES6.prototype.protoFunc();
+ses6.protoFunc();
+console.log(StudentES6.num);
+console.log(ses6.age);
+console.log(ses6.__proto__.tage);
+StudentES6.run();
+
+/**获取对象类型*/
+//typeof gobj 这种方法在以下三种数据类型只会返回object，因为构造函数本质是简单的工厂函数，是通过 new object创建的；
+let gobj = new Object();
+let garr = new Array();
+let gp = new Person();
+console.log(typeof garr)
+//通过实例对象的原型对象的constructor访问该构造函数，获取该构造函数的name属性，来获取类型
+console.log(garr.constructor.name,garr.__proto__.constructor.name)
+//garr instanceof Array 这种方法可以判断某一对象是否由指定的构造函数构造出来的实例，注意：只要指定构造函数的原型对象出现在该对象的原型链中（例如继承），就认为是true
+console.log(gp instanceof Person);
+//isPrototypeOf 用于判断 某一原型对象是否是 一个 对象的原型对象，注意：只要指定的对象的原型链中存在该原型对象（例如继承），就认为是true
+console.log(StudentES6.prototype.isPrototypeOf(ses6),PersonES6.prototype.isPrototypeOf(ses6))
+
+//判断一个对象是否拥有某一个属性，不论属性实在自身类中还是原型对象中（构造函数的静态属性除外，因为其不属于该对象的属性）
+console.log("name" in ses6,"width" in ses6,"num" in ses6)
+//判断一个对象本身类中是否拥有某一个属性，在原型对象及其他地方不算
+console.log(ses6.hasOwnProperty('name'),ses6.hasOwnProperty('tage'))
