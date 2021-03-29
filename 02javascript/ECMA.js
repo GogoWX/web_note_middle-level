@@ -418,5 +418,70 @@ p1.age = 20;//设置公共变量
 console.log(p1.getAge(),p1.age)
 
 /** 
- * 继承性：
+ * 继承性：在企业开发中如果构造函数和构造函数之间的关系是is a关系，那么就可以使用继承来优化代码，来减少代码的冗余度。
+ * 
+ * 修改函数默认this的三个方法：
+ * bind方法：修改函数或者方法中的this为指定对象，并返回修改后的新函数，还可以将参数写在指定的this对象的后面进行传参，不会修改原函数/对象；
+ * call方法：修改函数或者方法中的this为指定对象，并且立即调用该函数，还可以将参数写在指定的this对象的后面进行传参，不会修改原函数/对象；
+ * apply方法：修改函数或者方法中的this为指定对象，并且立即调用该函数，还可以将参数写在指定的this对象的后面进行传参，传参需要用数组，不会修改原函数/对象；
+ */
+let obj = {
+  name: 'wx'
+}
+function test(a,b) {
+  console.log(a,b)
+  console.log(this)
+}
+test(10,20)
+let bindfn = test.bind(obj,10,20);
+bindfn()
+test.call(obj,50,60)
+test.apply(obj,[1,2])
+
+function Pthis() {
+  this.say = function() {
+    console.log(this);
+  }
+}
+let pt = new Pthis();
+pt.say.apply(obj)
+
+//继承
+function Person2(myName,myAge) {
+  //当new 一个对象系统会自动进行如下操作
+  //let obj = new Object();系统自动添加
+  //let this = obj;系统自动添加
+  this.name = myName;
+  this.age = myAge;
+  this.say = function() {
+    console.log("My name is " + this.name,',age ' + this.age)
+  }
+  //return this;系统自动添加
+}
+Person2.prototype.run = function() {
+  console.log("it's proto func")
+}
+function Student(myName = '未知',myAge = 18,myScore = 0) {
+  //let stu = new Object()
+  //let this = stu;
+  Person2.apply(this,arguments);//Person.apply(stu);也就是将Person中的this指向了stu；
+  //经测试 Student.prototype = new Person2(); 已经将Person2中的属性方法继承给了Student.prototype，只是Student new实例的时候，无法重置this，因此无法将参数传递到
+  this.score = myScore;
+  this.study = function() {
+    console.log("day day up")
+  }
+  //return this;
+}
+Student.prototype = new Person2();
+Student.prototype.constructor = Student;
+let stu = new Student('wxw',27,99)
+stu.say();
+stu.study();
+console.log(stu.name,stu.age,stu.score)
+stu.run()
+
+/**多态：指事物的多种状态
+ * 强类型语言：一般编译语言都是强类型语言，强类型语言要求变量的使用要严格符合定义，也就是定义时需规定变量的存储类型，不允许使用其他的数据类型；
+ * 弱类型语言：一般解释型语言都是弱类型语言，定义变量时，不必定义其数据类型，允许使用各种数据类型，JS就是弱类型语言，所以不必多关注多态。
+ * 
  */
