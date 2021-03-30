@@ -500,7 +500,7 @@ class PersonES6 {
   constructor(myName = 'wx', myAge = 0) {
     this.name = myName;
     this.age = myAge;
-    //设置实例属性
+    //设置实例方法
     this.say = function() {
       console.log("ES6 My name is " + this.name, ',age ' + this.age)
     }
@@ -548,10 +548,10 @@ console.log(ses6.__proto__.tage);
 StudentES6.run();
 
 /**获取对象类型*/
-//typeof gobj 这种方法在以下三种数据类型只会返回object，因为构造函数本质是简单的工厂函数，是通过 new object创建的；
 let gobj = new Object();
 let garr = new Array();
 let gp = new Person();
+//typeof gobj 这种方法在以下三种数据类型只会返回object，因为构造函数本质是简单的工厂函数，是通过 new object创建的；
 console.log(typeof garr)
 //通过实例对象的原型对象的constructor访问该构造函数，获取该构造函数的name属性，来获取类型
 console.log(garr.constructor.name,garr.__proto__.constructor.name)
@@ -564,3 +564,64 @@ console.log(StudentES6.prototype.isPrototypeOf(ses6),PersonES6.prototype.isProto
 console.log("name" in ses6,"width" in ses6,"num" in ses6)
 //判断一个对象本身类中是否拥有某一个属性，在原型对象及其他地方不算
 console.log(ses6.hasOwnProperty('name'),ses6.hasOwnProperty('tage'))
+
+/*对象的增删改查*/
+class PersonEdit{};
+let pe = new PersonEdit();
+//增加
+pe.name = 'wx';
+pe['age'] = 27;
+pe.say = function() {
+  console.log('obj say')
+}
+console.log('obj add',pe)
+//删除
+delete pe['age'];
+console.log('obj delete',pe)
+//改
+pe['name'] = 'wxw';
+console.log('obj change',pe)
+//查询
+pe.say();
+pe['say']();
+console.log('obj use',pe['name'])
+
+/*对象遍历 */
+//将指定对象中所有的属性和方法的名称取出来，依次赋值给key这个变量；注意：只会获取实例属性和方法；
+for(let key in ses6) {
+  if(ses6[key] instanceof Function) {//过滤掉方法
+    continue;
+  }
+  // if(ses6[key].constructor.name == 'Function') {//过滤掉方法
+  //   continue;
+  // }
+  console.log(key,ses6[key])
+}
+
+/**解构赋值
+ * ES6数组解构赋值：[a,b,[c,d]] = [1,2,[3,4]]
+ * 注意点：1、格式需相同；2、左右数据个数可不相等，如果右侧个数少，那么左边剩余变量赋值为undefined；3、左边变量可设默认值 [a=11,b=22,c=33] = [1,2] 
+ * let [a,...b] = [1,2,3,4,5]  放在左边表示将剩余数据打包
+ * let res = [...arr1,...arr2]放在右侧将数组中的值取出来
+ * 
+ * ES6对象结构赋值：左边要被赋值的变量名称，必须和对象的属性方法名称一致，才能够解构出来；
+ */
+let dobj = {
+  dname: 'wx',
+  dage: 27
+}
+let {dname,dage,dheight} = dobj;
+console.log('解构赋值',dname,dage,dheight)
+
+//解构赋值的应用场景
+let darr = [1,3];
+function dsum([a,b]) {
+  return a + b
+}
+let dres = dsum(darr);
+console.log('数组解构赋值应用：',dres);
+
+function dsay({dname,dage}) {
+  console.log('对象解构赋值应用：',dname,dage);
+}
+dsay(dobj);
