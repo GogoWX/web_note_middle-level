@@ -713,7 +713,50 @@ dca2[4].height = 5;
 dca3[4].height = 7;
 console.log('数组对象深拷贝引用数据类型 ',dca,dca2,dca3);
 let dcn = 123;
-console.log(depCopy2(dcn))
+console.log(depCopy2(dcn));
 
+/**数组高级API
+ * for(let key in arr){} 数组对象通用，不推荐使用此方法来遍历数组，for in循环专门用于遍历无需的对象；
+ * ES6中的for of循环
+ * forEach循环
+ * findIndex 定制版的indexOf,找到返回索引，找不到返回-1；数组查找方法
+ * find find方法返回找到的元素，找不到返回undefined；数组查找方法
+ */
+let farr = [1,3,5,6,7]
+//for of 
+for(let value of farr) {
+  console.log('for of 数组 ',value)
+}
+//forEach
+farr.forEach(function (currentValue,currentIndex,currentArray) {//遍历到的当前元素，当前索引以及当前遍历的数组，可任意取名
+  console.log(currentValue,currentIndex,currentArray)
+})
 
+//forEach的实现方法
+Array.prototype.myForEach = function (fn) {
+  for(let i = 0;i < this.length; i++) {
+    fn(this[i],i,this);
+  }
+}
+farr.myForEach(function (currentValue,currentIndex,currentArray) {//遍历到的当前元素，当前索引以及当前遍历的数组，可任意取名
+  console.log('myForEach',currentValue,currentIndex,currentArray)
+})
 
+//findIndex
+let findex = farr.findIndex(function (currentValue,currentIndex,currentArray) {//遍历到的当前元素，当前索引以及当前遍历的数组，可任意取名
+  // console.log('findIndex',currentValue,currentIndex,currentArray)
+  if(currentValue === 6) {
+    return true;
+  }
+})
+console.log('findIndex ',findex);
+
+//find
+let fvalue = farr.find(function (currentValue,currentIndex,currentArray) {
+  // console.log('find',currentValue,currentIndex,currentArray)
+  if(currentValue === 6) {
+    return true;
+  }
+})
+
+console.log('find ',fvalue);
