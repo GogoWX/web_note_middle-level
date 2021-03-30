@@ -625,3 +625,95 @@ function dsay({dname,dage}) {
   console.log('对象解构赋值应用：',dname,dage);
 }
 dsay(dobj);
+
+/**深拷贝与浅拷贝
+ * 深拷贝：修改新的变量的值不会影响原有变量的值，默认情况下基本数据都是深拷贝；
+ * 浅拷贝：修改新变量的值会影响原有的变量的值，默认情况下引用类型都是浅拷贝；
+ */
+let cnum1 = 123;
+let cnum2 = cnum1;
+cnum2 = 666;//修改新变量的值
+console.log('深拷贝：',cnum1,cnum2)
+
+class PersonC {
+  constructor() {
+    this.name = 'wx';
+    this.age = 27;
+    this.say = function() {
+      console.log('对象方法')
+    }
+    this.info = {
+      height: 180
+    }
+  }
+}
+let cp = new PersonC();//将实例对象赋值给cp变量，实际上是将实例对象所在的存储空间地址赋值给了cp变量；
+let cp2 = cp;//将cp所指向的存储空间地址赋值给了cp2，所操作的都是同一存储空间
+cp2.name = 'wxw';//修改所指向的空间地址内的对象对应的属性值
+console.log('浅拷贝',cp2.name,cp.name)
+
+//对象的深拷贝
+let dcp = new PersonC();
+let dcp1 = new Object();
+// for(let key in dcp) {
+//   dcp1[key] = dcp[key]
+// }
+Object.assign(dcp1,dcp);//将dcp中的所有属性及方法，深拷贝到dcp1；注意：以上两种方法只能深拷贝对象属性是基本数据类型的属性，
+dcp1.name = 'www';
+dcp1.say = function() {
+  console.log('深拷贝对象方法')
+};
+dcp.say()
+dcp1.say()
+console.log('对象深拷贝 ',dcp.name,dcp1.name)
+// dcp1.info.height = 175;
+let dcp2 = new Object()
+function depCopy(target,source) {
+  for(let key in source) {//遍历取出source中得所有属性
+    let sourceValue = source[key];//取出source中得所有属性的值
+    if(sourceValue instanceof Object) {//判断当前取值是否为引用数据类型
+      let subTarget = new sourceValue.constructor;
+      target[key] = subTarget;
+      depCopy(subTarget,sourceValue)
+    } else {
+      target[key] = source[key]
+    }
+  }
+}
+depCopy(dcp2,dcp);
+
+//第二种方法（优化后可以深拷贝所有类型数据）
+function depCopy2(obj) {
+  //判断拷贝的要进行深拷贝的是数组还是对象，是数组的话进行数组拷贝，对象的话进行对象拷贝
+  let objClone = obj;//如果该对象时基本数据类型则直接赋值
+  //进行深拷贝的不能为空，并且是对象或者是
+  if (obj && obj instanceof Object) {
+    objClone = new obj.constructor;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (obj[key] && obj[key] instanceof Object) {
+          objClone[key] = depCopy2(obj[key]);
+        } else {
+          objClone[key] = obj[key];
+        }
+      }
+    }
+  } 
+  return objClone;
+}
+let dcp3 = depCopy2(dcp);
+dcp3.info.height = 185;
+console.log('对象深拷贝引用数据类型 ',dcp2.name,dcp.info.height,dcp2.info.height,dcp3.info.height);
+//尝试两种方法进行数组深拷贝
+let dca = [1,2,3,4,{height: 1},[9,8]];
+let dca2 = new Array;
+depCopy(dca2,dca);
+let dca3 = depCopy2(dca);
+dca2[4].height = 5;
+dca3[4].height = 7;
+console.log('数组对象深拷贝引用数据类型 ',dca,dca2,dca3);
+let dcn = 123;
+console.log(depCopy2(dcn))
+
+
+
