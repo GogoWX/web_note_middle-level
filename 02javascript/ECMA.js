@@ -720,7 +720,14 @@ console.log(depCopy2(dcn));
  * ES6中的for of循环
  * forEach循环
  * findIndex 定制版的indexOf,找到返回索引，找不到返回-1；数组查找方法
- * find find方法返回找到的元素，找不到返回undefined；数组查找方法
+ * find 方法返回找到的元素，找不到返回undefined；数组查找方法
+ * filter方法 数组过滤，将满足条件的元素添加到一个新的数组中
+ * map方法 数组映射，将满足条件的元素映射到一个新的数组中
+ * 
+ * 删除数组元素的注意点：
+ * for 循环中 用splice进行循环删除时，会删不干净，一是由于length的不断变小，另一个是删除后剩余元素的索引值发生变化，而for index不断增加，因此通过下面方法解决：
+ * 提前存length，从后往前删
+ * delete farr[0]
  */
 let farr = [1,3,5,6,7]
 //for of 
@@ -739,7 +746,7 @@ Array.prototype.myForEach = function (fn) {
   }
 }
 farr.myForEach(function (currentValue,currentIndex,currentArray) {//遍历到的当前元素，当前索引以及当前遍历的数组，可任意取名
-  console.log('myForEach',currentValue,currentIndex,currentArray)
+  console.log('myForEach ',currentValue,currentIndex,currentArray)
 })
 
 //findIndex
@@ -758,5 +765,38 @@ let fvalue = farr.find(function (currentValue,currentIndex,currentArray) {
     return true;
   }
 })
-
 console.log('find ',fvalue);
+
+//filter
+let filterArr = farr.filter(function (currentValue,currentIndex,currentArray) {//遍历到的当前元素，当前索引以及当前遍历的数组，可任意取名
+  // console.log('filter ',currentValue,currentIndex,currentArray)
+  if(currentValue % 2 === 0) {
+    return true;
+  }
+})
+console.log('filter ',filterArr)
+
+//map 会先将新数组的所有元素设置为undefined，如果原数组的某个索引的元素符合条件，就赋值给新数组相应索引的元素，也就是映射；
+let mapArr = farr.map(function (currentValue,currentIndex,currentArray) {//遍历到的当前元素，当前索引以及当前遍历的数组，可任意取名
+  // console.log('map ',currentValue,currentIndex,currentArray)
+  if(currentValue % 2 === 0) {
+    return currentValue;
+  }
+})
+console.log('map ',mapArr)
+
+//for循环 splice 删除数组元素的方式
+let arr1 = [1,2,3,4,5,6];
+let len1 = arr1.length;
+for(let i = len1 -1;i >= 0;i--) {//从后往前删
+  arr1.splice(i,1)
+}
+console.log('for循环 splice 删除数组元素 ',arr1)
+
+//delete 删除数组元素
+let arr2 = [1,2,3,4,5,6];
+for(let i = 0;i < arr2.length;i++) {//通过delete删除数组元素，数组的length属性不会发生变化
+  delete arr2[i]
+}
+console.log('for循环 delete 删除数组元素 ',arr2)
+
