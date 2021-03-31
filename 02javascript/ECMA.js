@@ -800,3 +800,80 @@ for(let i = 0;i < arr2.length;i++) {//通过delete删除数组元素，数组的
 }
 console.log('for循环 delete 删除数组元素 ',arr2)
 
+//数组排序方法
+let sarr1 = [3,1,8,2,5];
+let sarr2 = ['c','a','d','b'];
+let sarr3 = ['abb','天地','a','sdsadasds','但还是觉得回家撒大'];
+//字符串类型元素数组排序
+sarr2.sort(function(a,b) {//如果元素是字符串类型，那么比较的是字符串的Unicode编码
+  if(a < b) {
+    return -1;
+  }else if(a > b){
+    return 1;
+  } else {
+    return 0;
+  }
+})
+//数值类型元素数组排序
+sarr1.sort(function(a,b) {//如果元素是数值类型，那么直接升序返回a-b，降序返回b-a就可以了
+  return a-b;
+})
+//以字符串长度来排序
+sarr3.sort(function(a,b) {
+  return a.length-b.length;
+})
+
+console.log('sort排序 ',sarr2,sarr1,sarr3);
+
+/**字符串常用方法
+ * .length 获取字符串长度
+ * charAt 获取某个字符
+ * indexOf/lastIndexOf/includes 字符串查找
+ * concat 字符串拼接，推荐直接使用 str1 + str2
+ * substr(开始序号，截取个数)/substring(开始序号，结束序号（不包括）)/slice(开始序号，结束序号（不包括）) 字符串截取 
+ * split 字符串切割为数组
+ * replace 字符串替换 用正则做索引（/str/g）可以进行所有的替换
+ * ES6 startsWith() 判断是否以指定字符串开头
+ * ES6 endsWith() 判断是否以指定字符串结尾
+ * ES6 ``字符串模板
+ */
+
+let sstr = 'teststring';
+//charAt 
+let ca = sstr.charAt(1);
+console.log('str charAt ',ca)
+
+//indexOf/lastIndexOf/includes
+console.log('字符串查找 ',sstr.indexOf('s'),sstr.lastIndexOf('f'),sstr.includes('r'))
+
+//substr/substring
+console.log('字符串截取 ',sstr,sstr.substr(1,3),sstr.substring(1,3))
+
+//split
+console.log('字符切割为数组 ',sstr,sstr.split(''))
+
+//replace
+console.log('字符串替换 ',sstr,sstr.replace('s','e'),sstr.replace(/s/g,'e'))
+
+//startsWith
+console.log('是否以指定字符串开头 ',sstr.startsWith('t'),sstr.startsWith('ttt'))
+
+//endsWith
+console.log('是否以指定字符串开头 ',sstr.endsWith('ing'),sstr.endsWith('ttt'))
+
+//``字符串模板
+console.log(`字符串模板 ${sstr}123`)
+
+/**基本数据类型与基本包装类型
+ * 基本数据类型：Number String Boolean Null Undefined
+ * 基本数据类型特点：常量不能被修改，修改时会生成一个新的数据（比如字符串replace方法，拼接字符串，因此不要大量拼接字符串），这也是基本数据类型可以直接深拷贝的原因？
+ * 基本数据类型没有属性和方法，不能够动态添加（let str = 'dsads';str.age= 'xxx';str.say=function(){}），因为被心痛包装成了 基本包装类型才可以使用字符串方法
+ * 基本包装类型：String() Number() boolean()
+ */
+
+//基本包装类型 
+let sstr3 = 'x.xss';
+//let sstr3 = new String() 系统添加
+sstr3.split('.');
+
+
