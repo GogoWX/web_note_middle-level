@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='application' content='test'>
+    <!--元数据-所属应用名称-->
+    <meta name='author' content='Ethan'>
+    <!--元数据-作者名字-->
+    <meta name='description' content='This is a test/case page'>
+    <!--元数据-当前页面描述-->
+    <meta name='keywords' content=''>
+    <!--元数据-当前页面描述-->
+    <meta name="robots" content="noindex">
+    <!--搜索引擎处理方式：noindex - 不要索引此页面 noarchive - 不要创建此页面的存档或缓存版本 nofollow - 不要追踪（即抓取）此页面的链接-->
+    <!-- <meta http-equiv='refresh' content='5'> -->
+    <!--规定每五秒重新加载页面，5;http://www.demo.com格式会在五秒后跳转页面-->
+    <base href="data/"><!-- 设置默认链接地址 -->
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- ie9以下支持html5，国外、国内二选一 -->
+    <!--[if lt IE 9]>
+        <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <style>
+        header,
+        section,
+        footer,
+        aside,
+        nav,
+        main,
+        article,
+        figure {
+            display: block;
+        }
+
+        section,
+        header {
+            width: 100%;
+            padding: 20px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .bgi {
+            padding: 20px;
+            background-image: url('data/bgi_paper.gif');
+            background-repeat: repeat;
+            -webkit-background-origin: content-box;
+            background-origin: content-box;
+        }
+
+        .bg-clip {
+            border: 5px dotted black;
+            padding: 20px;
+            background: yellow;
+            background-clip: padding-box;
+        }
+
+        .section-box {
+            padding: 0;
+        }
+
+        .flex-jc-sa {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .bd-f4 {
+            border-color: #f4f4f4;
+        }
+
+        #div1,
+        #div2 {
+            float: left;
+            width: 100px;
+            height: 35px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+
+        .text-a-r {
+            text-align: right;
+        }
+    </style>
+    <script src="js/case.js" defer></script>
+    <!--外联脚本属性 defer：延迟加载，在html加载完成后加载；async：异步加载，html解析与脚本加载同时进行，可以异步地执行不与HTML文档中的元素交互的自包含脚本，不适用于依赖于由其他脚本定义的函数或值的脚本。-->
+    <noscript>
+        <h1>Javascript is required!</h1>
+        <p>You cannot use this page without Javascript</p>
+        <meta http-equiv="refresh" content="3; https://github.com/GogoWX" />
+        <!--如不支持脚本，3秒后跳转至其他页面-->
+    </noscript>
+</head>
+
+<body>
+    <header>
+        <address>
+            Questions and comments? <a href="mailto:wangxu5277@163.com">Email me</a>
+        </address>
+    </header>
+    <section class="section-box">
+        <!-- sse 服务器发送事件(无需请求，自动刷新)开始 -->
+        <section class="bgi">
+            <h1>服务器时间：</h1>
+            <div id="sseResult"></div>
+            <script>
+                if (typeof (EventSource) !== 'undefined') {
+                    var source = new EventSource('php/index.php')
+                    source.onmessage = function (event) {
+                        document.getElementById("sseResult").innerHTML = event.data;
+                    }
+                } else {
+                    document.getElementById("sseResult").innerHTML = "抱歉，您的浏览器不支持 server-sent 事件...";
+                }
+            </script>
+        </section>
+        <!-- sse 服务器发送事件(无需请求，自动刷新)结束 -->
+        <!-- html5 worker 开始 -->
+        <section>
+            <p>计数：<output id='result'>0</output></p>
+            <button onclick="startWorker()">开始工作</button>
+            <button onclick="stopWorker()">停止工作</button>
+            <script>
+                var w = undefined;
+
+                function startWorker() {
+                    if (typeof (Worker) !== 'undefined') {
+                        if (w == undefined) {
+                            w = new Worker('js/demo_worker.js');
+                        }
+                        w.onmessage = function (event) {
+                            document.getElementById('result').innerHTML = event.data;
+                        }
+                    } else {
+                        document.getElementById('result').innerHTML = "抱歉，你的浏览器不支持 Web Workers...";
+                    }
+                }
+
+                function stopWorker() {
+                    w.terminate();
+                    w = undefined;
+                }
+            </script>
+        </section>
+        <!-- html5 worker 结束 -->
+        <!-- html5拖动开始 -->
+        <section class="flex-jc-sa">
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img src="logo.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <script>
+                function allowDrop(ev) {
+                    ev.preventDefault();
+                }
+
+                function drag(ev) {
+                    ev.dataTransfer.setData("Text", ev.target.id);
+                }
+
+                function drop(ev) {
+                    ev.preventDefault();
+                    var data = ev.dataTransfer.getData("Text");
+                    ev.target.appendChild(document.getElementById(data));
+                }
+            </script>
+        </section>
+        <!-- html5拖动结束 -->
+        <!-- 格式化标签开始 -->
+        <section>
+            <p>The <abbr title="Cascading Style Sheets">CSS</abbr> is a style sheet language used for describing the
+                look and formatting of a document written in a markup language.</p>
+            <p>
+                <bdi>abcd</bdi>
+                <br />
+                <bdo dir="rtl">This is right to left</bdo>
+                <!--文字方向从右到左-->
+                <br />
+                <del>2020</del> 1
+            </p>
+        </section>
+        <!-- 格式化标签结束 -->
+        <!--超链接页面在iframe中显示开始-->
+        <section>
+            <iframe name="iframe_a" width="160" height="90"></iframe>
+            <!--src属性可指定显示内容的地址-->
+            <p><a href="https://www.w3cschool.cn/" target="iframe_a">W3Cschool</a></p>
+        </section>
+        <!--超链接页面在iframe中显示结束-->
+        <!--引用块内容开始-->
+        <section>
+            <blockquote cite="http://en.wikipedia.org/wiki/Cascading_Style_Sheets">
+                <p>Cascading Style Sheets (CSS) is a style sheet language used for describing the look and formatting of
+                    a document written in a markup language.</p>
+                <p class="text-a-r"><cite>—— http://en.wikipedia.org/wiki/Cascading_Style_Sheets</cite></p>
+            </blockquote>
+        </section>
+        <!--引用块内容结束-->
+        <!--预格式化开始，pre标签会保留标签内内容的格式-->
+        <section>
+            <pre>
+                <code>
+                    var  fruits = ["XML",  "HTML", "CSS", "Java"];
+                    for (var i = 0; i < fruits.length; i++) {
+                        document.writeln("I like  "  + fruits[i]);
+                    }
+                </code>
+            </pre>
+        </section>
+        <!-- 预格式化结束 -->
+        <!-- 预设的输入选项开始 -->
+        <section>
+            <form action=" #javascript" method="get">
+                <input list="browsers" name="browser">
+                <datalist id="browsers">
+                    <option value="Internet Explorer">
+                    <option value="Firefox">
+                    <option value="Chrome">
+                    <option value="Opera">
+                    <option value="Safari">
+                </datalist>
+                <input type="submit">
+            </form>
+        </section>
+        <!-- 预设的输入选项结束 -->
+
+        <!-- 表格开始 -->
+        <section>
+            <table class="bd-f4" border="1px" cellspacing='0' cellpadding='10' align='center'>
+                <caption>受理员业务统计表</caption>
+                <thead>
+                    <tr>
+                        <th colspan="2" rowspan="2">受理员</th>
+                        <th rowspan="2">受理数</th>
+                        <th rowspan="2">自办数</th>
+                        <th rowspan="2">直接解答</th>
+                        <th colspan="2">拟办意见</th>
+                        <th colspan="2">返回修改</th>
+                        <th colspan="3">工单类型</th>
+                    </tr>
+                    <tr>
+                        <td>同意</td>
+                        <td>比例</td>
+                        <td>数量</td>
+                        <td>比例</td>
+                        <td>建议件</td>
+                        <td>诉求件</td>
+                        <td>咨询件</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="5">受处理</td>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>总计</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td rowspan="5">话务组</td>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>王</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>总计</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <!-- 表格结束 -->
+
+        <!-- 音视频开始 -->
+        <section class="flex-jc-sa bg-clip">
+            <div>
+                <video width="320" height="240" controls autoplay>
+                    <source src="movie.ogg" type="video/ogg">
+                    <!-- 使用head中的base默认地址拼接 -->
+                    <source src="movie.mp4" type="video/mp4">
+                    <source src="movie.webm" type="video/webm">
+                    <object data="movie.mp4" width="320" height="240">
+                        <embed width="320" height="240" src="movie.swf">
+                    </object>
+                </video>
+            </div>
+            <div>
+                <audio controls height="100" width="100">
+                    <source src="horse.mp3" type="audio/mpeg">
+                    <source src="horse.ogg" type="audio/ogg">
+                    <object data="horse.mp3" width="320" height="240">
+                        <embed height="50" width="100" src="horse.mp3">
+                    </object>
+                </audio>
+            </div>
+        </section>
+        <!-- 音视频结束 -->
+    </section>
+</body>
+
+</html>

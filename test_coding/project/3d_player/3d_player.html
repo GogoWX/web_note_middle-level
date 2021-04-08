@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D播放器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body {
+            background: url(data/jacky/bg.jpg) no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+        ul {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin-left: -100px;
+            transform-style: preserve-3d;
+            animation: sport 6s linear 0s infinite;
+        }
+        ul li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            font-size: 60px;
+            line-height: 200px;
+            text-align: center;
+            background-color: black;
+        }
+        ul li img {
+            width: 200px;
+            height: 200px;
+            border: 2px solid skyblue;
+            box-sizing: border-box;
+        }
+        ul li:nth-child(1) {
+            transform: rotateY(60deg) translateZ(200px);
+        }
+        ul li:nth-child(2) {
+            transform: rotateY(120deg) translateZ(200px);
+        }
+        ul li:nth-child(3) {
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        ul li:nth-child(4) {
+            transform: rotateY(240deg) translateZ(200px);
+        }
+        ul li:nth-child(5) {
+            transform: rotateY(300deg) translateZ(200px);
+        }
+        ul li:nth-child(6) {
+            transform: rotateY(360deg) translateZ(200px);
+        }
+        @keyframes sport {
+            from {
+                transform: rotateX(-10deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(-10deg) rotateY(360deg);
+            }
+        }
+        ul:hover {
+            animation-play-state: paused;
+        }
+        ul:hover li img{
+            opacity: 0.5;
+        }
+        ul li:hover img{
+            opacity: 1;
+        }
+        .heart {
+            position: absolute;
+            left: 100px;
+            bottom: 100px;
+            width: 173px;
+            height: 157px;
+            animation: move 10s linear 0s infinite;
+        }
+        @keyframes move {
+            0% {
+                left: 100px;
+                bottom: 100px;
+                opacity: 1;
+            }
+            20% {
+                left: 500px;
+                bottom: 500px;
+                opacity: 0;
+            }
+            40% {
+                left: 800px;
+                bottom: 800px;
+                opacity: 1;
+            }
+            60% {
+                left: 1200px;
+                bottom: 500px;
+                opacity: 0;
+            }
+            80% {
+                left: 1400px;
+                bottom: 100px;
+                opacity: 1;
+            }
+            100% {
+                left: 800px;
+                bottom: -200px;
+                opacity: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <ul>
+            <li><img src="data/jacky/1.png"></li>
+            <li><img src="data/jacky/2.jpg"></li>
+            <li><img src="data/jacky/3.jpg"></li>
+            <li><img src="data/jacky/4.gif"></li>
+            <li><img src="data/jacky/5.jpg"></li>
+            <li><img src="data/jacky/6.jpg"></li>
+        </ul>
+        <img class="heart" src="data/jacky/xin.png" alt="">
+        <audio height="100" width="100" autoplay loop>
+            <source src="data/jacky/我醒着做梦.mp3" type="audio/mpeg">
+            <source src="data/jacky/我醒着做梦.ogg" type="audio/ogg">
+            <object data="data/jacky/我醒着做梦.mp3" width="320" height="240">
+                <embed height="50" width="100" src="data/jacky/我醒着做梦.mp3">
+            </object>
+        </audio>
+    </div>
+</body>
+
+</html>
