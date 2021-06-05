@@ -29,6 +29,7 @@ git学习笔记
 关联本地仓库与github仓库：git remote add origin https://github.com/example/test.git
 从远程仓库克隆一个本地库：git clone https://github.com/example/test.git
 推送本地库内容至远程库：git push -u origin master （-u为首次为将本地与远程端的master关联用，之后的推送可和拉取可省略,master为分支名称）git pull origin master --allow-unrelated-histories
+强制推送覆盖远程分支（不能轻易使用）：git push origin 分支名 --force
 5、分支管理
 查看分支：git branch
 创建分支：git branch 文件名
