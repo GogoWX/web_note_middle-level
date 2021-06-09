@@ -38,6 +38,7 @@ git学习笔记
 合并某分支到当前分支：git merge 分支名 
 合并分支留痕，禁用Fast forward：git merge --no-ff -m "merge with no-ff" 分支名
 删除分支：git branch -d 分支名
+删除远程分支：git push origin --delete [branch_name]
 合并分支冲突后，修改重新add、commit恢复
 储藏工作区未提交代码：git stash 用于临时需要拉取其他分支修复bug
 查看储存代码列表：git stash list 
