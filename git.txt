@@ -32,6 +32,7 @@ git学习笔记
 强制推送覆盖远程分支（不能轻易使用）：git push origin 分支名 --force
 5、分支管理
 查看分支：git branch
+刷新远程分支列表：git remote update origin --prune
 创建分支：git branch 文件名
 切换分支：git checkout 分支名 或者 git switch 分支名（未成功）
 创建+切换分支：git checkout -b 分支名 或者 git switch -c 分支名
